@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
-import { addMovie } from "./movieSlice"
+import { addMovie, removeMovie } from "./movieSlice"
 
 const App = () => {
 
@@ -15,7 +15,10 @@ const App = () => {
       dispatch(addMovie(newMovie))
       setNewMovie("")
     }
+  }
 
+  const handleDeleteMovie =(id)=>{
+    dispatch(removeMovie(id))
   }
   
   return (
@@ -28,7 +31,10 @@ const App = () => {
         <button onClick={handleAddNewMovie}> Add movie </button>
         {
           movies.map((movie)=>(
-            <p key={movie.id}> {movie.name} </p>
+            <div key={movie.id}>
+              <p> {movie.name} </p>
+            <button onClick={()=>handleDeleteMovie(movie.id)}> Delete movie </button>
+            </div>
           ))
         }
       </div>

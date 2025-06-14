@@ -16,7 +16,14 @@ const movieslice = createSlice({
             }
             state.movies.push(newMovie)
         },
-        removeMovie: (state, action)=>{}
+        removeMovie: (state, action)=>{
+            const confirmed = confirm("Are you sure you want to delete the movie???")
+
+            if (confirmed){
+                state.movies = state.movies.filter((movie)=> movie.id !== action.payload)
+                
+            }
+        }
     }
 })
 
